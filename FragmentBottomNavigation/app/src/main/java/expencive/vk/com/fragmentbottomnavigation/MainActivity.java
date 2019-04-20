@@ -12,8 +12,6 @@ public class MainActivity extends AppCompatActivity {
 
     public  Fragment selectedFrament = null;
 
-    boolean isDogChecked;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,18 +20,8 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        if (isDogChecked){
-            selectedFrament = new DogsFragment();
-        }else {
-            selectedFrament = new CatsFragment();
-        }
-
-        setBottomNavigation();
-
-
-
-
     }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -42,15 +30,14 @@ public class MainActivity extends AppCompatActivity {
             switch (menuItem.getItemId()){
                 case R.id.nav_home:
                     selectedFrament = new CatsFragment();
-                    isDogChecked = false;
                     break;
                 case R.id.nav_favorits:
                     selectedFrament = new DogsFragment();
-                    isDogChecked = true;
                     break;
             }
 
             setBottomNavigation();
+
 
             return true;
         }
@@ -66,3 +53,4 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
+
