@@ -9,7 +9,10 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    Fragment selectedFrament = null;
+
+    public  Fragment selectedFrament = null;
+
+    boolean isDogChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +21,16 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        if (isDogChecked){
+            selectedFrament = new DogsFragment();
+        }else {
+            selectedFrament = new CatsFragment();
+        }
+
+        setBottomNavigation();
+
+
 
 
     }
@@ -29,9 +42,11 @@ public class MainActivity extends AppCompatActivity {
             switch (menuItem.getItemId()){
                 case R.id.nav_home:
                     selectedFrament = new CatsFragment();
+                    isDogChecked = false;
                     break;
                 case R.id.nav_favorits:
                     selectedFrament = new DogsFragment();
+                    isDogChecked = true;
                     break;
             }
 
